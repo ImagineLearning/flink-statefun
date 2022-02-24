@@ -34,6 +34,11 @@ final class FlinkMetricUtil {
       public void dec(long amount) {
         internalCounter.dec(amount);
       }
+
+      @Override
+      public void setValue(long amount) {
+        internalCounter.inc(amount - internalCounter.getCount());
+      }
     };
   }
 }
