@@ -34,6 +34,13 @@ public interface Counter {
    */
   void dec(long amount);
 
+  /**
+   * Set the value of this counter to @amount;
+   *
+   * @param amount the amount to set to;
+   */
+  void setValue(long amount);
+
   /** Increment the value of this counter by 1. */
   default void inc() {
     inc(1);
