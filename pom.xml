@@ -27,7 +27,7 @@ under the License.
     </parent>
 
     <artifactId>statefun-parent</artifactId>
-    <groupId>org.apache.flink</groupId>
+    <groupId>com.imaginelearning.flink</groupId>
     <name>statefun-parent</name>
     <version>3.2.0</version>
     <packaging>pom</packaging>
@@ -390,4 +390,3 @@ under the License.
         </plugins>
     </build>
 </project>
-
