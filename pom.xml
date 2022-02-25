@@ -189,7 +189,7 @@ under the License.
                             </goals>
                             <configuration>
                                 <includeStdTypes>true</includeStdTypes>
-                                <protocVersion>${protobuf.version}</protocVersion>
+                                <protocArtifact>com.google.protobuf:protoc:${protobuf.version}</protocArtifact>
                                 <cleanOutputFolder>true</cleanOutputFolder>
                                 <outputDirectory>${basedir}/target/generated-sources/protoc-jar</outputDirectory>
                             </configuration>
@@ -204,7 +204,7 @@ under the License.
                             </goals>
                             <configuration>
                                 <includeStdTypes>true</includeStdTypes>
-                                <protocVersion>${protobuf.version}</protocVersion>
+                                <protocArtifact>com.google.protobuf:protoc:${protobuf.version}</protocArtifact>
                                 <inputDirectories>
                                     <include>src/test/protobuf</include>
                                 </inputDirectories>

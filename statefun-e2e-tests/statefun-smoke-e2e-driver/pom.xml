@@ -152,7 +152,7 @@ under the License.
                         </goals>
                         <configuration>
                             <includeStdTypes>true</includeStdTypes>
-                            <protocVersion>${protobuf.version}</protocVersion>
+                            <protocArtifact>com.google.protobuf:protoc:${protobuf.version}</protocArtifact>
                             <cleanOutputFolder>true</cleanOutputFolder>
                             <inputDirectories>
                                 <inputDirectory>src/main/protobuf</inputDirectory>
