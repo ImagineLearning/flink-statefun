@@ -155,6 +155,9 @@ class TestContext implements Context {
 
           @Override
           public void dec(long amount) {}
+
+          @Override
+          public void setValue(long amount) {}
         };
   }
 

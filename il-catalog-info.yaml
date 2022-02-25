@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Component
+metadata:
+  name: flink-statefun
+  description: Forked repository of apache/flink-statefun
+  title: flink-statefun
+  annotations:
+    github.com/project-slug: imaginelearning/flink-statefun
+spec:
+  type: service
+  lifecycle: production
+  owner: RAD
+  # Specify this if the service is only used by only 1 parent service
+  subcomponentOf: rad-fastlane-statefun

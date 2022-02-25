@@ -523,6 +523,9 @@ public class RequestReplyFunctionTest {
 
             @Override
             public void dec(long amount) {}
+
+            @Override
+            public void setValue(long amount) {}
           };
     }
   }
