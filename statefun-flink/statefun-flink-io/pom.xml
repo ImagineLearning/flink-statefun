@@ -109,7 +109,7 @@ under the License.
                         </goals>
                         <configuration>
                             <includeStdTypes>true</includeStdTypes>
-                            <protocArtifact>com.google.protobuf:protoc:${protobuf.version}</protocArtifact>
+                            <protocVersion>${protobuf.version}</protocVersion>
                             <cleanOutputFolder>true</cleanOutputFolder>
                             <inputDirectories>
                                 <inputDirectory>src/main/protobuf</inputDirectory>
