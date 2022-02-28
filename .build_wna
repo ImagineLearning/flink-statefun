@@ -1,2 +1,5 @@
 build:
   type: maven
+  env:
+    - key: MAVEN_DISABLE_MIRROR_ALL
+      value: "true"
