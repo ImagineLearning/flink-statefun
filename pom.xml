@@ -112,6 +112,16 @@ under the License.
         </dependencies>
     </dependencyManagement>
 
+    <distributionManagement>
+        <repository>
+          <id>io.cloudrepo</id>
+          <url>https://weldnorthanalytics.mycloudrepo.io/repositories/doolittle</url>
+        </repository>
+        <snapshotRepository>
+          <id>io.cloudrepo</id>
+          <url>https://weldnorthanalytics.mycloudrepo.io/repositories/doolittle</url>
+        </snapshotRepository>
+    </distributionManagement>
 
     <profiles>
         <!--
