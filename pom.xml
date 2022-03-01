@@ -21,9 +21,9 @@ under the License.
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>org.apache</groupId>
-        <artifactId>apache</artifactId>
-        <version>23</version>
+        <groupId>org.basepom</groupId>
+        <artifactId>basepom-minimal</artifactId>
+        <version>35</version>
     </parent>
 
     <artifactId>statefun-parent</artifactId>
