@@ -13,7 +13,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-apiVersion: v1
+apiVersion: backstage.io/v1beta1
 kind: Component
 metadata:
   name: flink-statefun
@@ -24,6 +24,6 @@ metadata:
 spec:
   type: service
   lifecycle: production
-  owner: RAD
+  owner: reporting-and-dashboards
   # Specify this if the service is only used by only 1 parent service
   subcomponentOf: rad-fastlane-statefun
