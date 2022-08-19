@@ -24,6 +24,6 @@ metadata:
 spec:
   type: service
   lifecycle: production
-  owner: reporting-and-dashboards
+  owner: jetstream
   # Specify this if the service is only used by only 1 parent service
   subcomponentOf: rad-fastlane-statefun
