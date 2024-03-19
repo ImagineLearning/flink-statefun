@@ -107,6 +107,20 @@ public class StatefulFunctionsConfig implements Serializable {
           .withDescription(
               "The name of the remote module entity to look for. Also supported, file:///...");
 
+  public static final ConfigOption<String> METRICS_FUNCTION_NAMESPACE_KEY =
+      ConfigOptions.key("statefun.metrics.function.namespace.key")
+          .stringType()
+          .noDefaultValue()
+          .withDescription(
+              "Enable key/value metrics for functions using the supplied key in the 'namespace' MetricGroup");
+
+  public static final ConfigOption<String> METRICS_FUNCTION_TYPE_KEY =
+      ConfigOptions.key("statefun.metrics.function.type.key")
+          .stringType()
+          .noDefaultValue()
+          .withDescription(
+              "Enable key/value metrics for functions using the supplied key in the 'type' MetricGroup");
+
   /**
    * Creates a new {@link StatefulFunctionsConfig} based on the default configurations in the
    * current environment set via the {@code flink-conf.yaml}.
@@ -136,6 +150,9 @@ public class StatefulFunctionsConfig implements Serializable {
 
   private Map<String, String> globalConfigurations = new HashMap<>();
 
+  private String metricFunctionNamespaceKey;
+  private String metricFunctionTypeKey;
+
   /**
    * Create a new configuration object based on the values set in flink-conf.
    *
@@ -149,6 +166,8 @@ public class StatefulFunctionsConfig implements Serializable {
     this.feedbackBufferSize = configuration.get(TOTAL_MEMORY_USED_FOR_FEEDBACK_CHECKPOINTING);
     this.maxAsyncOperationsPerTask = configuration.get(ASYNC_MAX_OPERATIONS_PER_TASK);
     this.remoteModuleName = configuration.get(REMOTE_MODULE_NAME);
+    this.metricFunctionNamespaceKey = configuration.get(METRICS_FUNCTION_NAMESPACE_KEY);
+    this.metricFunctionTypeKey = configuration.get(METRICS_FUNCTION_TYPE_KEY);
 
     for (String key : configuration.keySet()) {
       if (key.startsWith(MODULE_CONFIG_PREFIX)) {
@@ -232,6 +251,30 @@ public class StatefulFunctionsConfig implements Serializable {
    */
   public void setRemoteModuleName(String remoteModuleName) {
     this.remoteModuleName = Objects.requireNonNull(remoteModuleName);
+  }
+
+  /**
+   * Returns the key name to use for key/value metric groups at the function 'namespace' level of
+   * the metric group hierarchy.
+   */
+  public String getMetricFunctionNamespaceKey() {
+    return metricFunctionNamespaceKey;
+  }
+
+  public void setMetricFunctionNamespaceKey(String metricFunctionNamespaceKey) {
+    this.metricFunctionNamespaceKey = metricFunctionNamespaceKey;
+  }
+
+  /**
+   * Returns the key name to use for key/value metric groups at the function 'type' level of the
+   * metric group hierarchy.
+   */
+  public String getMetricFunctionTypeKey() {
+    return metricFunctionTypeKey;
+  }
+
+  public void setMetricFunctionTypeKey(String metricFunctionTypeKey) {
+    this.metricFunctionTypeKey = metricFunctionTypeKey;
   }
 
   /**
