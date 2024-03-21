@@ -19,21 +19,32 @@ package org.apache.flink.statefun.flink.core.metrics;
 
 import java.util.Objects;
 import org.apache.flink.metrics.MetricGroup;
+import org.apache.flink.statefun.flink.core.StatefulFunctionsConfig;
 import org.apache.flink.statefun.sdk.FunctionType;
 import org.apache.flink.statefun.sdk.metrics.Metrics;
 
 public class FlinkFuncionTypeMetricsFactory implements FuncionTypeMetricsFactory {
 
   private final MetricGroup metricGroup;
+  private final StatefulFunctionsConfig configuration;
 
-  public FlinkFuncionTypeMetricsFactory(MetricGroup metricGroup) {
+  public FlinkFuncionTypeMetricsFactory(
+      MetricGroup metricGroup, StatefulFunctionsConfig configuration) {
     this.metricGroup = Objects.requireNonNull(metricGroup);
+    this.configuration = Objects.requireNonNull(configuration);
   }
 
   @Override
   public FunctionTypeMetrics forType(FunctionType functionType) {
-    MetricGroup namespace = metricGroup.addGroup(functionType.namespace());
-    MetricGroup typeGroup = namespace.addGroup(functionType.name());
+    MetricGroup namespace =
+        (configuration.getMetricFunctionNamespaceKey() != null)
+            ? metricGroup.addGroup(
+                configuration.getMetricFunctionNamespaceKey(), functionType.namespace())
+            : metricGroup.addGroup(functionType.namespace());
+    MetricGroup typeGroup =
+        (configuration.getMetricFunctionTypeKey() != null)
+            ? namespace.addGroup(configuration.getMetricFunctionTypeKey(), functionType.name())
+            : namespace.addGroup(functionType.name());
     Metrics functionTypeScopedMetrics = new FlinkUserMetrics(typeGroup);
     return new FlinkFunctionTypeMetrics(typeGroup, functionTypeScopedMetrics);
   }

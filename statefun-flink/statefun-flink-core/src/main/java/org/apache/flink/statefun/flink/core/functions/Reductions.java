@@ -25,6 +25,7 @@ import org.apache.flink.api.common.state.MapState;
 import org.apache.flink.metrics.MetricGroup;
 import org.apache.flink.runtime.state.KeyedStateBackend;
 import org.apache.flink.runtime.state.internal.InternalListState;
+import org.apache.flink.statefun.flink.core.StatefulFunctionsConfig;
 import org.apache.flink.statefun.flink.core.StatefulFunctionsUniverse;
 import org.apache.flink.statefun.flink.core.backpressure.BackPressureValve;
 import org.apache.flink.statefun.flink.core.di.Inject;
@@ -68,7 +69,8 @@ final class Reductions {
       MessageFactory messageFactory,
       Executor mailboxExecutor,
       MetricGroup metricGroup,
-      MapState<Long, Message> asyncOperations) {
+      MapState<Long, Message> asyncOperations,
+      StatefulFunctionsConfig configuration) {
 
     ObjectContainer container = new ObjectContainer();
 
@@ -109,7 +111,7 @@ final class Reductions {
     container.add(
         "function-metrics-factory",
         FuncionTypeMetricsFactory.class,
-        new FlinkFuncionTypeMetricsFactory(metricGroup));
+        new FlinkFuncionTypeMetricsFactory(metricGroup, configuration));
     container.add(
         "function-dispatcher-metrics",
         FunctionDispatcherMetrics.class,
