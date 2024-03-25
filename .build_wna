@@ -1,5 +1,7 @@
 build:
   type: maven
+  image: jdk17
+  image_version_prefix: -v1
   env:
     - key: MAVEN_DISABLE_MIRROR_ALL
       value: "true"
