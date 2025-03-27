@@ -121,6 +121,13 @@ public class StatefulFunctionsConfig implements Serializable {
           .withDescription(
               "Enable key/value metrics for functions using the supplied key in the 'type' MetricGroup");
 
+  public static final ConfigOption<Boolean> EMBEDDED =
+      ConfigOptions.key("statefun.embedded")
+          .booleanType()
+          .defaultValue(false)
+          .withDescription(
+              "True if Flink is running this job from an uber jar, rather than using statefun-specific docker images");
+
   /**
    * Creates a new {@link StatefulFunctionsConfig} based on the default configurations in the
    * current environment set via the {@code flink-conf.yaml}.
@@ -148,7 +155,9 @@ public class StatefulFunctionsConfig implements Serializable {
 
   private String remoteModuleName;
 
-  private Map<String, String> globalConfigurations = new HashMap<>();
+  private boolean embedded;
+
+  private final Map<String, String> globalConfigurations = new HashMap<>();
 
   private String metricFunctionNamespaceKey;
   private String metricFunctionTypeKey;
@@ -168,6 +177,7 @@ public class StatefulFunctionsConfig implements Serializable {
     this.remoteModuleName = configuration.get(REMOTE_MODULE_NAME);
     this.metricFunctionNamespaceKey = configuration.get(METRICS_FUNCTION_NAMESPACE_KEY);
     this.metricFunctionTypeKey = configuration.get(METRICS_FUNCTION_TYPE_KEY);
+    this.embedded = configuration.getBoolean(EMBEDDED);
 
     for (String key : configuration.keySet()) {
       if (key.startsWith(MODULE_CONFIG_PREFIX)) {
@@ -251,6 +261,19 @@ public class StatefulFunctionsConfig implements Serializable {
    */
   public void setRemoteModuleName(String remoteModuleName) {
     this.remoteModuleName = Objects.requireNonNull(remoteModuleName);
+  }
+
+  /** Returns whether the job was launched in embedded mode (see {@linkplain #EMBEDDED}). */
+  public boolean isEmbedded() {
+    return embedded;
+  }
+
+  /**
+   * Sets the embedded mode. If true, disables certain validation steps. See documentation:
+   * Configurations.
+   */
+  public void setEmbedded(boolean embedded) {
+    this.embedded = embedded;
   }
 
   /**

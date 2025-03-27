@@ -29,6 +29,7 @@ public class NettyTransportModule implements ExtensionModule {
   @Override
   public void configure(Map<String, String> globalConfigurations, Binder binder) {
     binder.bindExtension(
-        TransportClientConstants.ASYNC_CLIENT_FACTORY_TYPE, new NettyRequestReplyClientFactory());
+        TransportClientConstants.ASYNC_CLIENT_FACTORY_TYPE,
+        NettyRequestReplyClientFactory.INSTANCE);
   }
 }

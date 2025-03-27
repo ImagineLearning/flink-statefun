@@ -21,41 +21,33 @@ package org.apache.flink.statefun.flink.datastream;
 import java.net.URI;
 import java.time.Duration;
 import org.apache.flink.annotation.Internal;
-import org.apache.flink.shaded.jackson2.com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.flink.shaded.jackson2.com.fasterxml.jackson.databind.node.ObjectNode;
-import org.apache.flink.statefun.flink.common.json.StateFunObjectMapper;
-import org.apache.flink.statefun.flink.core.httpfn.DefaultHttpRequestReplyClientSpec;
-import org.apache.flink.statefun.flink.core.httpfn.HttpFunctionEndpointSpec;
-import org.apache.flink.statefun.flink.core.httpfn.TargetFunctions;
-import org.apache.flink.statefun.flink.core.httpfn.TransportClientConstants;
-import org.apache.flink.statefun.flink.core.httpfn.TransportClientSpec;
-import org.apache.flink.statefun.flink.core.httpfn.UrlPathTemplate;
+import org.apache.flink.statefun.flink.core.httpfn.*;
 import org.apache.flink.statefun.sdk.FunctionType;
 
-/** A Builder for RequestReply remote function type. */
-public class RequestReplyFunctionBuilder {
-
-  /** The object mapper used to serialize the client spec object. */
-  private static final ObjectMapper CLIENT_SPEC_OBJ_MAPPER = StateFunObjectMapper.create();
-
-  private final DefaultHttpRequestReplyClientSpec.Timeouts transportClientTimeoutsSpec =
-      new DefaultHttpRequestReplyClientSpec.Timeouts();
+/** A builder for RequestReply remote function type. */
+public class RequestReplyFunctionBuilder extends StatefulFunctionBuilder {
 
   /**
    * Create a new builder for a remote function with a given type and an endpoint.
    *
+   * @deprecated Use {@link StatefulFunctionBuilder#requestReplyFunctionBuilder} instead.
    * @param functionType the function type that is served remotely.
    * @param endpoint the endpoint that serves that remote function.
    * @return a builder.
    */
+  @Deprecated
   public static RequestReplyFunctionBuilder requestReplyFunctionBuilder(
       FunctionType functionType, URI endpoint) {
     return new RequestReplyFunctionBuilder(functionType, endpoint);
   }
 
+  private final DefaultHttpRequestReplyClientSpec.Timeouts transportClientTimeoutsSpec =
+      new DefaultHttpRequestReplyClientSpec.Timeouts();
+
   private final HttpFunctionEndpointSpec.Builder builder;
 
-  private RequestReplyFunctionBuilder(FunctionType functionType, URI endpoint) {
+  RequestReplyFunctionBuilder(FunctionType functionType, URI endpoint) {
     this.builder =
         HttpFunctionEndpointSpec.builder(
             TargetFunctions.functionType(functionType),
@@ -118,7 +110,13 @@ public class RequestReplyFunctionBuilder {
     return this;
   }
 
+  /**
+   * Create the endpoint spec for the function.
+   *
+   * @return The endpoint spec.
+   */
   @Internal
+  @Override
   HttpFunctionEndpointSpec spec() {
     final TransportClientSpec transportClientSpec =
         new TransportClientSpec(

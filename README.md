@@ -17,8 +17,6 @@ to get yourself started with Stateful Functions.
 
 For a fully detailed documentation, please visit the [official docs](https://ci.apache.org/projects/flink/flink-statefun-docs-master).
 
-For code examples, please take a look at the [examples](statefun-examples/).
-
 ![Java 8 Build](https://github.com/apache/flink-statefun/workflows/Java%208%20Build/badge.svg)
 
 ## Table of Contents
@@ -116,21 +114,21 @@ We highly recommend starting from the the tutorials and examples that can be fou
 
 ### <a name="java">New Java Users
 
-Head over to the [Java SDK Showcase](https://github.com/apache/flink-statefun-playground/tree/release-3.0/java/showcase), or the [Java Greeter Example](https://github.com/apache/flink-statefun-playground/tree/release-3.0/java/greeter) in the playground repository.
+Head over to the [Java SDK Showcase](https://github.com/apache/flink-statefun-playground/tree/release-3.3/java/showcase), or the [Java Greeter Example](https://github.com/apache/flink-statefun-playground/tree/release-3.3/java/greeter) in the playground repository.
 
 Alternatively, execute the following commands to clone the playground repository locally:
 ```
-$ git clone -b release-3.0 https://github.com/apache/flink-statefun-playground.git
+$ git clone -b release-3.3 https://github.com/apache/flink-statefun-playground.git
 $ cd java/showcase # or, java/greeter
 ```
 
 ### <a name="python">New Python Users
 
-For new Python users, head over to the [Python SDK Showcase](https://github.com/apache/flink-statefun-playground/tree/release-3.0/python/showcase), or the [Python Greeter Example](https://github.com/apache/flink-statefun-playground/tree/release-3.0/python/greeter) in the playground repository.
+For new Python users, head over to the [Python SDK Showcase](https://github.com/apache/flink-statefun-playground/tree/release-3.3/python/showcase), or the [Python Greeter Example](https://github.com/apache/flink-statefun-playground/tree/release-3.3/python/greeter) in the playground repository.
 
 Alternatively, execute the following commands to clone the playground repository locally:
 ```
-$ git clone -b release-3.0 https://github.com/apache/flink-statefun-playground.git
+$ git clone -b release-3.3 https://github.com/apache/flink-statefun-playground.git
 $ cd python/showcase # or, python/greeter
 ```
 
@@ -157,7 +155,7 @@ This section contains information for building this project.
 
 2. Build Stateful Functions Docker image: This step requires that you've already compiled artifacts from the source code.
   ```
-  $ ./tools/docker/build-distribution.sh
+  $ ./tools/docker/build-stateful-functions.sh
   ```
   This builds a local Docker image tagged as `flink-statefun:<version_of_current_source_version>`.
 
