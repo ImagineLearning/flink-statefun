@@ -29,6 +29,7 @@ import org.apache.flink.statefun.flink.core.message.Message;
 import org.apache.flink.statefun.flink.core.message.MessageFactory;
 import org.apache.flink.statefun.flink.core.message.MessageFactoryKey;
 import org.apache.flink.statefun.flink.core.metrics.FlinkUserMetrics;
+import org.apache.flink.statefun.flink.core.metrics.MetricGroupAdapterFactoryUtil;
 import org.apache.flink.statefun.sdk.Address;
 import org.apache.flink.statefun.sdk.io.IngressIdentifier;
 import org.apache.flink.statefun.sdk.io.Router;
@@ -73,7 +74,10 @@ public final class IngressRouterOperator<T> extends AbstractStreamOperator<Messa
 
     MetricGroup routersMetricGroup =
         getMetricGroup().addGroup("routers").addGroup(id.namespace()).addGroup(id.name());
-    Metrics routersMetrics = new FlinkUserMetrics(routersMetricGroup);
+    MetricGroup adapterGroup =
+        MetricGroupAdapterFactoryUtil.getMetricGroupAdapterFactory(configuration)
+            .createMetricGroupAdapter(routersMetricGroup);
+    Metrics routersMetrics = new FlinkUserMetrics(adapterGroup);
 
     this.routers = loadRoutersAttachedToIngress(id, universe.routers());
     this.downstream =

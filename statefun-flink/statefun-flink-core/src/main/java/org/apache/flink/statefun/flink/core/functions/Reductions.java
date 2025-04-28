@@ -38,6 +38,7 @@ import org.apache.flink.statefun.flink.core.metrics.FlinkFunctionDispatcherMetri
 import org.apache.flink.statefun.flink.core.metrics.FuncionTypeMetricsFactory;
 import org.apache.flink.statefun.flink.core.metrics.FunctionDispatcherMetrics;
 import org.apache.flink.statefun.flink.core.metrics.FunctionTypeMetricsRepository;
+import org.apache.flink.statefun.flink.core.metrics.MetricGroupAdapterFactoryUtil;
 import org.apache.flink.statefun.flink.core.state.FlinkState;
 import org.apache.flink.statefun.flink.core.state.State;
 import org.apache.flink.statefun.flink.core.types.DynamicallyRegisteredTypes;
@@ -115,7 +116,9 @@ final class Reductions {
     container.add(
         "function-dispatcher-metrics",
         FunctionDispatcherMetrics.class,
-        new FlinkFunctionDispatcherMetrics(metricGroup));
+        new FlinkFunctionDispatcherMetrics(
+            MetricGroupAdapterFactoryUtil.getMetricGroupAdapterFactory(configuration)
+                .createMetricGroupAdapter(metricGroup)));
 
     // for delayed messages
     container.add(

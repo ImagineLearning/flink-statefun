@@ -153,6 +153,8 @@ public class StatefulFunctionsConfig implements Serializable {
   private String metricFunctionNamespaceKey;
   private String metricFunctionTypeKey;
 
+  private String metricGroupAdapterFactoryClassName;
+
   /**
    * Create a new configuration object based on the values set in flink-conf.
    *
@@ -275,6 +277,14 @@ public class StatefulFunctionsConfig implements Serializable {
 
   public void setMetricFunctionTypeKey(String metricFunctionTypeKey) {
     this.metricFunctionTypeKey = metricFunctionTypeKey;
+  }
+
+  public String getMetricGroupAdapterFactoryClassName() {
+    return metricGroupAdapterFactoryClassName;
+  }
+
+  public void setMetricGroupAdapterFactoryClassName(String metricGroupAdapterFactoryClassName) {
+    this.metricGroupAdapterFactoryClassName = metricGroupAdapterFactoryClassName;
   }
 
   /**

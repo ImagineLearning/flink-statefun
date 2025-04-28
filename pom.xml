@@ -29,7 +29,7 @@ under the License.
     <artifactId>statefun-parent</artifactId>
     <groupId>org.apache.flink</groupId>
     <name>statefun-parent</name>
-    <version>3.2.0.2</version>
+    <version>3.2.0.3</version>
     <packaging>pom</packaging>
 
     <url>http://flink.apache.org</url>
@@ -76,9 +76,9 @@ under the License.
         <java.version>1.8</java.version>
         <spotless-maven-plugin.version>1.20.0</spotless-maven-plugin.version>
         <auto-service.version>1.0-rc6</auto-service.version>
-        <protobuf.version>3.7.1</protobuf.version>
+        <protobuf.version>3.25.6</protobuf.version>
         <unixsocket.version>2.3.2</unixsocket.version>
-        <protoc-jar-maven-plugin.version>3.11.1</protoc-jar-maven-plugin.version>
+        <protoc-jar-maven-plugin.version>3.11.4</protoc-jar-maven-plugin.version>
         <flink.version>1.14.3</flink.version>
         <scala.binary.version>2.12</scala.binary.version>
         <scala.version>2.12.7</scala.version>
