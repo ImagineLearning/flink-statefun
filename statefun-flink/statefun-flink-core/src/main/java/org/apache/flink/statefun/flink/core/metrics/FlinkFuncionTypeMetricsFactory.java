@@ -45,7 +45,10 @@ public class FlinkFuncionTypeMetricsFactory implements FuncionTypeMetricsFactory
         (configuration.getMetricFunctionTypeKey() != null)
             ? namespace.addGroup(configuration.getMetricFunctionTypeKey(), functionType.name())
             : namespace.addGroup(functionType.name());
-    Metrics functionTypeScopedMetrics = new FlinkUserMetrics(typeGroup);
-    return new FlinkFunctionTypeMetrics(typeGroup, functionTypeScopedMetrics);
+    MetricGroup adapterGroup =
+        MetricGroupAdapterFactoryUtil.getMetricGroupAdapterFactory(configuration)
+            .createMetricGroupAdapter(typeGroup);
+    Metrics functionTypeScopedMetrics = new FlinkUserMetrics(adapterGroup);
+    return new FlinkFunctionTypeMetrics(adapterGroup, functionTypeScopedMetrics);
   }
 }

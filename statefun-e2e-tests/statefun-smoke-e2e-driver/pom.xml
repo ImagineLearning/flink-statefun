@@ -72,7 +72,7 @@ under the License.
         <!-- streaming runtime -->
         <dependency>
             <groupId>org.apache.flink</groupId>
-            <artifactId>flink-streaming-java</artifactId>
+            <artifactId>flink-streaming-java_${scala.binary.version}</artifactId>
             <version>${flink.version}</version>
             <exclusions>
                 <!--

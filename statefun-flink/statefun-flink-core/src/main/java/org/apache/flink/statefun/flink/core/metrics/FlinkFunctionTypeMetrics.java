@@ -24,7 +24,6 @@ import org.apache.flink.metrics.Counter;
 import org.apache.flink.metrics.Histogram;
 import org.apache.flink.metrics.MeterView;
 import org.apache.flink.metrics.MetricGroup;
-import org.apache.flink.metrics.SimpleCounter;
 import org.apache.flink.statefun.sdk.metrics.Metrics;
 
 final class FlinkFunctionTypeMetrics implements FunctionTypeMetrics {
@@ -117,8 +116,8 @@ final class FlinkFunctionTypeMetrics implements FunctionTypeMetrics {
     remoteInvocationLatency.update(elapsed);
   }
 
-  private static SimpleCounter metered(MetricGroup metrics, String name) {
-    SimpleCounter counter = metrics.counter(name, new SimpleCounter());
+  private static Counter metered(MetricGroup metrics, String name) {
+    Counter counter = metrics.counter(name);
     metrics.meter(name + "Rate", new MeterView(counter, 60));
     return counter;
   }

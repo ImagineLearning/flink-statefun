@@ -19,9 +19,9 @@ package org.apache.flink.statefun.flink.core.feedback;
 
 import java.util.Objects;
 import java.util.function.LongFunction;
+import org.apache.flink.metrics.Counter;
 import org.apache.flink.metrics.MeterView;
 import org.apache.flink.metrics.MetricGroup;
-import org.apache.flink.metrics.SimpleCounter;
 import org.apache.flink.streaming.api.operators.AbstractStreamOperator;
 import org.apache.flink.streaming.api.operators.OneInputStreamOperator;
 import org.apache.flink.streaming.runtime.streamrecord.StreamRecord;
@@ -41,7 +41,7 @@ public final class FeedbackSinkOperator<V> extends AbstractStreamOperator<Void>
   // ----- runtime -----
 
   private transient FeedbackChannel<V> channel;
-  private transient SimpleCounter totalProduced;
+  private transient Counter totalProduced;
 
   public FeedbackSinkOperator(FeedbackKey<V> key, LongFunction<V> barrierSentinelSupplier) {
     this.key = Objects.requireNonNull(key);
@@ -75,7 +75,7 @@ public final class FeedbackSinkOperator<V> extends AbstractStreamOperator<Void>
 
     // metrics
     MetricGroup metrics = getRuntimeContext().getMetricGroup();
-    SimpleCounter produced = metrics.counter("produced", new SimpleCounter());
+    Counter produced = metrics.counter("produced");
     metrics.meter("producedRate", new MeterView(produced, 60));
     this.totalProduced = produced;
   }
