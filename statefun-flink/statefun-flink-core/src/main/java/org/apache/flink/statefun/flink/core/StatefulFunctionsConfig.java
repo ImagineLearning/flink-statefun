@@ -121,6 +121,13 @@ public class StatefulFunctionsConfig implements Serializable {
           .withDescription(
               "Enable key/value metrics for functions using the supplied key in the 'type' MetricGroup");
 
+  public static final ConfigOption<String> METRIC_GROUP_ADAPTER_FACTORY_CLASS =
+      ConfigOptions.key("statefun.metrics.group-adapter-factory-class")
+          .stringType()
+          .noDefaultValue()
+          .withDescription(
+              "The class name of a factory that creates a MetricGroupAdapter. The class must implement the MetricGroupAdapterFactory interface.");
+
   public static final ConfigOption<Boolean> EMBEDDED =
       ConfigOptions.key("statefun.embedded")
           .booleanType()
@@ -179,6 +186,7 @@ public class StatefulFunctionsConfig implements Serializable {
     this.remoteModuleName = configuration.get(REMOTE_MODULE_NAME);
     this.metricFunctionNamespaceKey = configuration.get(METRICS_FUNCTION_NAMESPACE_KEY);
     this.metricFunctionTypeKey = configuration.get(METRICS_FUNCTION_TYPE_KEY);
+    this.metricGroupAdapterFactoryClassName = configuration.get(METRIC_GROUP_ADAPTER_FACTORY_CLASS);
     this.embedded = configuration.getBoolean(EMBEDDED);
 
     for (String key : configuration.keySet()) {
