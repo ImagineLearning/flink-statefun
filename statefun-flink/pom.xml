@@ -22,7 +22,7 @@ under the License.
     <parent>
         <artifactId>statefun-parent</artifactId>
         <groupId>org.apache.flink</groupId>
-        <version>3.2.0.4</version>
+        <version>3.3.0.1-1.18</version>
         <relativePath>..</relativePath>
     </parent>
 
@@ -54,7 +54,7 @@ under the License.
             <!-- Flink -->
             <dependency>
                 <groupId>org.apache.flink</groupId>
-                <artifactId>flink-streaming-java_${scala.binary.version}</artifactId>
+                <artifactId>flink-streaming-java</artifactId>
                 <version>${flink.version}</version>
                 <exclusions>
                     <!--
@@ -69,8 +69,8 @@ under the License.
             </dependency>
             <dependency>
                 <groupId>org.apache.flink</groupId>
-                <artifactId>flink-connector-kafka_${scala.binary.version}</artifactId>
-                <version>${flink.version}</version>
+                <artifactId>flink-connector-kafka</artifactId>
+                <version>${flink.connector.kafka.version}</version>
                 <exclusions>
                     <!--
                     This conflicts with org.xerial.snappy:snappy-java
@@ -173,7 +173,7 @@ under the License.
             <dependency>
                 <groupId>org.xerial.snappy</groupId>
                 <artifactId>snappy-java</artifactId>
-                <version>1.1.4</version>
+                <version>1.1.10.1</version>
             </dependency>
             <!--
             Pin the scala library version in order to resolve the dependency conversion problem between two

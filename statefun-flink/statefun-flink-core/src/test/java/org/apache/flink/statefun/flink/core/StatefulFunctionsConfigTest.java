@@ -17,6 +17,7 @@
  */
 package org.apache.flink.statefun.flink.core;
 
+import java.util.Arrays;
 import java.util.Optional;
 import org.apache.flink.configuration.Configuration;
 import org.apache.flink.configuration.CoreOptions;
@@ -48,7 +49,7 @@ public class StatefulFunctionsConfigTest {
     configuration.set(StatefulFunctionsConfig.ASYNC_MAX_OPERATIONS_PER_TASK, 100);
     configuration.set(
         CoreOptions.ALWAYS_PARENT_FIRST_LOADER_PATTERNS_ADDITIONAL,
-        "org.apache.flink.statefun;org.apache.kafka;com.google.protobuf");
+        Arrays.asList("org.apache.flink.statefun", "org.apache.kafka", "com.google.protobuf"));
     configuration.set(ExecutionCheckpointingOptions.MAX_CONCURRENT_CHECKPOINTS, 1);
     configuration.setString("statefun.module.global-config.key1", "value1");
     configuration.setString("statefun.module.global-config.key2", "value2");
@@ -81,7 +82,7 @@ public class StatefulFunctionsConfigTest {
     configuration.set(StatefulFunctionsConfig.ASYNC_MAX_OPERATIONS_PER_TASK, 100);
     configuration.set(
         CoreOptions.ALWAYS_PARENT_FIRST_LOADER_PATTERNS_ADDITIONAL,
-        "org.apache.flink.statefun;org.apache.kafka;com.google.protobuf");
+        Arrays.asList("org.apache.flink.statefun", "org.apache.kafka", "com.google.protobuf"));
     configuration.set(ExecutionCheckpointingOptions.MAX_CONCURRENT_CHECKPOINTS, 1);
     return configuration;
   }
@@ -91,7 +92,7 @@ public class StatefulFunctionsConfigTest {
     Configuration configuration = baseConfiguration();
     configuration.set(
         StatefulFunctionsConfig.USER_MESSAGE_SERIALIZER, MessageFactoryType.WITH_CUSTOM_PAYLOADS);
-    StatefulFunctionsConfigValidator.validate(configuration);
+    StatefulFunctionsConfigValidator.validate(false, configuration);
   }
 
   @Test(expected = StatefulFunctionsInvalidConfigException.class)
@@ -101,6 +102,6 @@ public class StatefulFunctionsConfigTest {
         StatefulFunctionsConfig.USER_MESSAGE_SERIALIZER, MessageFactoryType.WITH_KRYO_PAYLOADS);
     configuration.set(
         StatefulFunctionsConfig.USER_MESSAGE_CUSTOM_PAYLOAD_SERIALIZER_CLASS, serializerClassName);
-    StatefulFunctionsConfigValidator.validate(configuration);
+    StatefulFunctionsConfigValidator.validate(false, configuration);
   }
 }
