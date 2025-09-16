@@ -29,7 +29,7 @@ under the License.
     <artifactId>statefun-parent</artifactId>
     <groupId>org.apache.flink</groupId>
     <name>statefun-parent</name>
-    <version>3.3.0.1-1.18</version>
+    <version>3.3.0.2-1.18</version>
     <packaging>pom</packaging>
 
     <url>http://flink.apache.org</url>
@@ -81,7 +81,7 @@ under the License.
         <protoc-jar-maven-plugin.version>3.11.4</protoc-jar-maven-plugin.version>
         <flink.version>1.18.1</flink.version>
         <flink.connector.kafka.version>3.1.0-1.18</flink.connector.kafka.version>
-        <flink.connector.kinesis.version>4.2.0-1.18</flink.connector.kinesis.version>
+        <flink.connector.kinesis.version>4.3.0-1.18</flink.connector.kinesis.version>
         <scala.binary.version>2.12</scala.binary.version>
         <scala.version>2.12.7</scala.version>
         <lz4-java.version>1.8.0</lz4-java.version>
@@ -183,18 +183,21 @@ under the License.
                 <artifactId>guava</artifactId>
                 <version>32.1.3-jre</version>
             </dependency>
+
+            <dependency>
+                <groupId>commons-io</groupId>
+                <artifactId>commons-io</artifactId>
+                <version>2.15.1</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
     <distributionManagement>
         <repository>
-          <id>io.cloudrepo</id>
-          <url>https://weldnorthanalytics.mycloudrepo.io/repositories/doolittle</url>
+            <id>github ImagineLearning</id> <!-- this is the ID of the server -->
+            <name>GitHub ImagineLearning Apache Maven Packages</name>
+            <url>https://maven.pkg.github.com/ImagineLearning/flink-statefun</url>
         </repository>
-        <snapshotRepository>
-          <id>io.cloudrepo</id>
-          <url>https://weldnorthanalytics.mycloudrepo.io/repositories/doolittle</url>
-        </snapshotRepository>
     </distributionManagement>
 
     <profiles>
@@ -349,6 +352,7 @@ under the License.
                 </executions>
                 <configuration>
                     <excludes>
+                        <exclude>il.yaml</exclude>
                         <!-- Additional files like .gitignore etc.-->
                         <exclude>**/.*/**</exclude>
                         <exclude>**/*.prefs</exclude>
