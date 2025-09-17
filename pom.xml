@@ -353,6 +353,7 @@ under the License.
                 <configuration>
                     <excludes>
                         <exclude>il.yaml</exclude>
+                        <exclude>version</exclude><!-- OTK v2 CI cruft -->
                         <!-- Additional files like .gitignore etc.-->
                         <exclude>**/.*/**</exclude>
                         <exclude>**/*.prefs</exclude>
