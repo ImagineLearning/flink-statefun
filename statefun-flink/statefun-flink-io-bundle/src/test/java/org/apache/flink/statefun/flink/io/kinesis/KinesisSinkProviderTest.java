@@ -39,7 +39,7 @@ public class KinesisSinkProviderTest {
   public void exampleUsage() {
     final KinesisEgressSpec<String> kinesisEgressSpec =
         KinesisEgressBuilder.forIdentifier(ID)
-            .withAwsRegion("us-west-1")
+            .withAwsRegion("us-east-2")
             .withAwsCredentials(AwsCredentials.basic("access-key-id", "secret-access-key"))
             .withSerializer(TestSerializer.class)
             .build();

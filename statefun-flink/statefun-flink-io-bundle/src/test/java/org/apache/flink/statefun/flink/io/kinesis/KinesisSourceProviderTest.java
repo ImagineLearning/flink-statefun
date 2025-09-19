@@ -42,7 +42,7 @@ public class KinesisSourceProviderTest {
   public void exampleUsage() {
     final KinesisIngressSpec<String> kinesisIngressSpec =
         KinesisIngressBuilder.forIdentifier(ID)
-            .withAwsRegion("us-west-1")
+            .withAwsRegion("us-east-2")
             .withAwsCredentials(AwsCredentials.basic("access-key-id", "secret-access-key"))
             .withDeserializer(TestDeserializer.class)
             .withStream(STREAM_NAME)

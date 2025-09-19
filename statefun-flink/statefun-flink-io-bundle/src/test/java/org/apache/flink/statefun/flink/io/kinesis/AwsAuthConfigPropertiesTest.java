@@ -37,12 +37,12 @@ public class AwsAuthConfigPropertiesTest {
     // TODO so we always have to have the region settings available in the client side
     // TODO this should no longer be a restriction once we fix this in the Flink connector side
     try (final ScopedSystemProperty awsRegionSystemProps =
-        new ScopedSystemProperty(SDKGlobalConfiguration.AWS_REGION_SYSTEM_PROPERTY, "us-west-1")) {
+        new ScopedSystemProperty(SDKGlobalConfiguration.AWS_REGION_SYSTEM_PROPERTY, "us-east-2")) {
       final Properties properties =
           AwsAuthConfigProperties.forAwsRegionConsumerProps(AwsRegion.fromDefaultProviderChain());
 
       assertThat(properties.entrySet(), hasSize(1));
-      assertThat(properties, hasEntry(AWSConfigConstants.AWS_REGION, "us-west-1"));
+      assertThat(properties, hasEntry(AWSConfigConstants.AWS_REGION, "us-east-2"));
     }
   }
 
@@ -72,12 +72,12 @@ public class AwsAuthConfigPropertiesTest {
     // TODO so we always have to have the region settings available in the client side
     // TODO this should no longer be a restriction once we fix this in the Flink connector side
     try (final ScopedSystemProperty awsRegionSystemProps =
-        new ScopedSystemProperty(SDKGlobalConfiguration.AWS_REGION_SYSTEM_PROPERTY, "us-west-1")) {
+        new ScopedSystemProperty(SDKGlobalConfiguration.AWS_REGION_SYSTEM_PROPERTY, "us-east-2")) {
       final Properties properties =
           AwsAuthConfigProperties.forAwsRegionProducerProps(AwsRegion.fromDefaultProviderChain());
 
       assertThat(properties.entrySet(), hasSize(1));
-      assertThat(properties, hasEntry(AWSConfigConstants.AWS_REGION, "us-west-1"));
+      assertThat(properties, hasEntry(AWSConfigConstants.AWS_REGION, "us-east-2"));
     }
   }
 

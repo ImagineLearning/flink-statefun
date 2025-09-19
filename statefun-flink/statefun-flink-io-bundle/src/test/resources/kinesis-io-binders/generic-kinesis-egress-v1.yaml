@@ -19,7 +19,7 @@ spec:
   awsRegion:
     type: custom-endpoint
     endpoint: https://localhost:4567
-    id: us-west-1
+    id: us-east-2
   awsCredentials:
     type: profile
     profileName: john-doe
