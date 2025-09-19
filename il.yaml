@@ -1,0 +1,24 @@
+meta:
+  owner: jetstream
+  trackingId: 87b2338d-3ea4-45cc-bd63-73d1f4a73a6c
+  domain: data
+  system: jetstream
+
+otk:
+  enabled: true
+  build:
+    language: java
+    languageVersion: 11
+    java:
+      mavenDeploy: true
+  deployConfig:
+    environments:
+      - dev
+      - qa
+      - staging
+      - prod
+
+spartanzBot:
+  fileChecker:
+    enabled: true
+    comment: true
