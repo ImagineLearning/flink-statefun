@@ -330,6 +330,11 @@ public class ReductionsTest {
     }
 
     @Override
+    public <N> Stream<Object> getKeys(List<String> states, N namespace) {
+      throw new UnsupportedOperationException();
+    }
+
+    @Override
     public <N, S extends State, T> S getOrCreateKeyedState(
         TypeSerializer<N> namespaceSerializer, StateDescriptor<S, T> stateDescriptor) {
       throw new UnsupportedOperationException();
