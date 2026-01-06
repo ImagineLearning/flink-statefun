@@ -45,15 +45,18 @@ public final class FunctionsStateBootstrapOperator
 
   private final StateBootstrapFunctionRegistry stateBootstrapFunctionRegistry;
 
+  private final long checkpointId;
   private final long snapshotTimestamp;
   private final Path snapshotPath;
 
   private transient StateBootstrapper stateBootstrapper;
 
   public FunctionsStateBootstrapOperator(
+      long checkpointId,
       StateBootstrapFunctionRegistry stateBootstrapFunctionRegistry,
       long snapshotTimestamp,
       Path snapshotPath) {
+    this.checkpointId = checkpointId;
     this.stateBootstrapFunctionRegistry = stateBootstrapFunctionRegistry;
     this.snapshotTimestamp = snapshotTimestamp;
     this.snapshotPath = snapshotPath;
@@ -79,6 +82,7 @@ public final class FunctionsStateBootstrapOperator
     // take a snapshot of the function states
     final TaggedOperatorSubtaskState state =
         SnapshotUtils.snapshot(
+            checkpointId,
             this,
             getRuntimeContext().getIndexOfThisSubtask(),
             snapshotTimestamp,

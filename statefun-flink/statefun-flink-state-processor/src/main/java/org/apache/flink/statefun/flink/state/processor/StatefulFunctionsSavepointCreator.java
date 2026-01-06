@@ -148,7 +148,7 @@ public class StatefulFunctionsSavepointCreator {
             .transform(
                 (timestamp, savepointPath) ->
                     new FunctionsStateBootstrapOperator(
-                        stateBootstrapFunctionRegistry, timestamp, savepointPath));
+                        0L, stateBootstrapFunctionRegistry, timestamp, savepointPath));
 
     newSavepoint.withOperator(
         StatefulFunctionsJobConstants.FUNCTION_OPERATOR_UID, bootstrapTransformation);
