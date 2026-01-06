@@ -58,6 +58,8 @@ class TestContext implements Context {
 
   private long watermark;
 
+  private final Map<String, TestCounter> counters = new HashMap<>();
+
   TestContext(Address selfAddress, StatefulFunction function, Instant startTime) {
     this.selfAddress = Objects.requireNonNull(selfAddress);
     this.function = Objects.requireNonNull(function);
@@ -147,18 +149,14 @@ class TestContext implements Context {
 
   @Override
   public Metrics metrics() {
-    // return a NOOP metrics
-    return name ->
-        new Counter() {
-          @Override
-          public void inc(long amount) {}
-
-          @Override
-          public void dec(long amount) {}
-
-          @Override
-          public void setValue(long amount) {}
-        };
+    return name -> {
+      TestCounter counter = counters.get(name);
+      if (counter == null) {
+        counter = new TestCounter();
+        counters.put(name, counter);
+      }
+      return counter;
+    };
   }
 
   @SuppressWarnings("unchecked")
@@ -225,6 +223,29 @@ class TestContext implements Context {
       this.envelope = envelope;
       this.timer = timer;
       this.cancellationToken = cancellationToken;
+    }
+  }
+
+  private static class TestCounter implements Counter {
+    private long value = 0;
+
+    @Override
+    public synchronized void inc(long amount) {
+      value += amount;
+    }
+
+    @Override
+    public synchronized void dec(long amount) {
+      value -= amount;
+    }
+
+    @Override
+    public synchronized void setValue(long amount) {
+      value = amount;
+    }
+
+    public synchronized long getValue() {
+      return value;
     }
   }
 }

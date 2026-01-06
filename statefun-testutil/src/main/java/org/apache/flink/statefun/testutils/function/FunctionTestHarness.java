@@ -29,6 +29,7 @@ import org.apache.flink.statefun.sdk.FunctionType;
 import org.apache.flink.statefun.sdk.StatefulFunction;
 import org.apache.flink.statefun.sdk.StatefulFunctionProvider;
 import org.apache.flink.statefun.sdk.io.EgressIdentifier;
+import org.apache.flink.statefun.sdk.metrics.Metrics;
 
 /**
  * The {@link FunctionTestHarness} provides a thin convenience wrapper around a {@link
@@ -126,6 +127,13 @@ public class FunctionTestHarness {
   public Map<Address, List<Object>> tick(Duration duration) {
     Objects.requireNonNull(duration);
     return context.tick(duration);
+  }
+
+  /**
+   * @return The metrics associated with this function.
+   */
+  public Metrics metrics() {
+    return context.metrics();
   }
 
   /**
