@@ -130,6 +130,8 @@ public class FunctionTestHarness {
   }
 
   /**
+   * Returns the metrics object associated with this function.
+   *
    * @return The metrics associated with this function.
    */
   public Metrics metrics() {
@@ -137,6 +139,8 @@ public class FunctionTestHarness {
   }
 
   /**
+   * Returns the current value of the counter metric with the given name.
+   *
    * @param name The name of the counter metric.
    * @return The current value of the counter metric with the given name.
    */
