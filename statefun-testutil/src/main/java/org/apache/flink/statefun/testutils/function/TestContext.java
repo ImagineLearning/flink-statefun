@@ -231,7 +231,7 @@ class TestContext implements Context {
     }
   }
 
-  public static class TestCounter implements Counter {
+  private static class TestCounter implements Counter {
     private long value = 0;
 
     @Override
