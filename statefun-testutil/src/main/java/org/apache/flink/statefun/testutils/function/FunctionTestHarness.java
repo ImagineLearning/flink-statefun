@@ -137,6 +137,14 @@ public class FunctionTestHarness {
   }
 
   /**
+   * @param name The name of the counter metric.
+   * @return The current value of the counter metric with the given name.
+   */
+  public long getMetricValueByCounterName(String name) {
+    return context.getMetricValueByCounterName(name);
+  }
+
+  /**
    * @param identifier An egress identifier
    * @param <T> the data type consumed by the egress.
    * @return All the messages sent to that egress.

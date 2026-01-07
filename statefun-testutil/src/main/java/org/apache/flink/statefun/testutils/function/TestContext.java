@@ -159,6 +159,11 @@ class TestContext implements Context {
     };
   }
 
+  public long getMetricValueByCounterName(String name) {
+    TestCounter counter = counters.get(name);
+    return counter != null ? counter.getValue() : 0;
+  }
+
   @SuppressWarnings("unchecked")
   <T> List<T> getEgress(EgressIdentifier<T> identifier) {
     List<?> values = outputs.getOrDefault(identifier, Collections.emptyList());
@@ -226,7 +231,7 @@ class TestContext implements Context {
     }
   }
 
-  private static class TestCounter implements Counter {
+  public static class TestCounter implements Counter {
     private long value = 0;
 
     @Override
