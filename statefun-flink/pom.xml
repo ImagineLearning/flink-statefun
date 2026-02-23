@@ -22,7 +22,7 @@ under the License.
     <parent>
         <artifactId>statefun-parent</artifactId>
         <groupId>org.apache.flink</groupId>
-        <version>3.3.0.1-1.20</version>
+        <version>3.3.0.2-1.20</version>
         <relativePath>..</relativePath>
     </parent>
 
@@ -135,16 +135,10 @@ under the License.
                 <version>1.7.7</version>
             </dependency>
             <dependency>
-                <groupId>org.slf4j</groupId>
-                <artifactId>slf4j-log4j12</artifactId>
-                <version>1.7.7</version>
+                <groupId>org.apache.logging.log4j</groupId>
+                <artifactId>log4j-1.2-api</artifactId>
+                <version>${log4j.version}</version>
             </dependency>
-            <dependency>
-                <groupId>log4j</groupId>
-                <artifactId>log4j</artifactId>
-                <version>1.2.17</version>
-            </dependency>
-
             <!-- protobuf -->
             <dependency>
                 <groupId>com.google.protobuf</groupId>
